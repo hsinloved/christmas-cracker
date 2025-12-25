@@ -367,20 +367,20 @@
   <div class="snow-container" id="snow"></div>
   <div class="marquee-wrapper" id="marquee">
     <div class="marquee">
-      <span>🎄 UNCOMFORTABLE TRUTHS · EMOTIONAL HONESTY · RADICAL ACCEPTANCE 🎄</span>
-      <span>🎄 UNCOMFORTABLE TRUTHS · EMOTIONAL HONESTY · RADICAL ACCEPTANCE 🎄</span>
-      <span>🎄 UNCOMFORTABLE TRUTHS · EMOTIONAL HONESTY · RADICAL ACCEPTANCE 🎄</span>
+      <span>🎄 TRUTH • HUMOUR • HUMANITY 🎄</span>
+      <span>🎄 TRUTH • HUMOUR • HUMANITY 🎄</span>
+      <span>🎄 TRUTH • HUMOUR • HUMANITY 🎄</span>
     </div>
   </div>
 
   <div class="container">
     <div id="homeScreen">
       <div class="header">
-        <div class="header-subtitle">FESTIVE REALITY CHECK 🎄</div>
-        <h1 class="header-title">PULL FOR<br/>TRUTH</h1>
+        <div class="header-subtitle">A DIGITAL CRACKER FOR FEELINGS WORTH CRACKING OPEN 🎄</div>
+        <h1 class="header-title">PULL FOR<br/>A TRUTH SNAP</h1>
         <p class="header-desc">
-          Honest mental health chat disguised as festive fun.<br/>
-          Click to reveal your uncomfortable truth.
+          Honest emotional nuggets tucked inside Christmas-cracker cheer.<br/>
+          Pull to reveal your mini truth (and maybe a smile).
         </p>
       </div>
 
@@ -398,14 +398,14 @@
         </div>
       </div>
 
-      <div class="footer">DESIGNED FOR EMOTIONAL HONESTY 🎄</div>
+      <div class="footer">NOT ALL TRUTHS SPARKLE LIKE TINSEL — BUT THEY ALL DESERVE A MOMENT 🎄</div>
     </div>
 
     <div id="resultScreen" class="hidden">
       <div class="results">
         <div class="fade-in">
           <div class="pop-title" onclick="reset()">*POP* 🎄</div>
-          <div class="pop-sub">YOUR REALITY CHECK</div>
+          <div class="pop-sub">YOUR MINI TRUTH (WITH CARE)</div>
         </div>
 
         <div class="fade-in card" style="animation-delay: 0.1s">
@@ -416,14 +416,14 @@
         </div>
 
         <div class="fade-in white-card" style="animation-delay: 0.2s">
-          <div class="white-card-label">SLIGHTLY HELPFUL REMINDER 🎁</div>
+          <div class="white-card-label">A GENTLE REMINDER (NO PAPER HAT REQUIRED) 🎁</div>
           <p class="white-card-text" id="affirmation"></p>
         </div>
 
         <div class="fade-in gift-card" style="animation-delay: 0.3s">
           <div class="gift-icon">🎁</div>
           <div>
-            <div class="gift-label">TAKE THIS, YOU NEED IT</div>
+            <div class="gift-label">YOUR SURPRISE INSIDE</div>
             <p class="gift-text" id="gift"></p>
           </div>
         </div>
@@ -443,31 +443,31 @@
 
   <script>
     const tips = [
-      { title: "FEELING LIKE SHIT IS DATA", subtitle: "Uncomfortable Truth No. 1", content: "Your brain isn't broken for feeling rubbish. It's actually doing its job by telling you something needs attention. Whether you listen is another matter entirely.", cta: "Misery loves company (therapy)" },
-      { title: "THE STRATEGIC CRY", subtitle: "Uncomfortable Truth No. 2", content: "Sometimes you just need a proper cry in the shower. It's not giving up—it's maintenance. Like defragging your emotional hard drive, but wetter.", cta: "Hydration comes in many forms" },
-      { title: "EVERYONE'S FAKING IT", subtitle: "Uncomfortable Truth No. 3", content: "That person who looks like they've got it together? They don't. They're just better at hiding the chaos. We're all just winging it whilst pretending we have a plan.", cta: "Imposter syndrome is a club, not a flaw" },
-      { title: "SELF-CARE IS CRINGE BUT NECESSARY", subtitle: "Uncomfortable Truth No. 4", content: "Yes, bubble baths and face masks feel silly. But so does having a breakdown in Sainsbury's. Pick your embarrassment wisely.", cta: "Choose your battles (and baths)" },
-      { title: "YOU CAN'T OPTIMISE YOUR WAY OUT", subtitle: "Uncomfortable Truth No. 5", content: "No amount of morning routines, bullet journals, or productivity hacks will fix everything. Sometimes life's just a bit shit and you have to sit with that.", cta: "Accept the chaos, embrace the mess" },
-      { title: "THERAPY ISN'T MAGIC", subtitle: "Uncomfortable Truth No. 6", content: "Talking to someone won't instantly fix you. It just means you're not suffering alone whilst also paying someone to witness your emotional car crash. Still worth it.", cta: "Professional validation hits different" },
-      { title: "REST WON'T FIX CAPITALISM", subtitle: "Uncomfortable Truth No. 7", content: "Taking a nap won't solve systemic problems, but it might stop you from losing it entirely. Small mercies. Do what you can, then take a kip.", cta: "Survive now, revolt later" },
-      { title: "YOUR STANDARDS ARE UNREALISTIC", subtitle: "Uncomfortable Truth No. 8", content: "The bar you've set for yourself is absurd and no one else is judging you this harshly. Lower it. Way lower. Ground floor, actually. Maybe basement.", cta: "Mediocrity is underrated" },
-      { title: "SOCIAL MEDIA IS A HIGHLIGHT REEL", subtitle: "Uncomfortable Truth No. 9", content: "Everyone's posting their wins, not their 3am anxiety spirals. You're comparing your behind-the-scenes to everyone else's carefully curated performance. Stop it.", cta: "Your mess is normal, their feed is not" },
-      { title: "BOUNDARIES MAKE PEOPLE ANGRY", subtitle: "Uncomfortable Truth No. 10", content: "Setting boundaries means some people will be upset with you. That's the point. Not everyone deserves unlimited access to your time and energy, even if they think they do.", cta: "Their discomfort isn't your responsibility" },
-      { title: "YOU'RE ALLOWED TO CHANGE YOUR MIND", subtitle: "Uncomfortable Truth No. 11", content: "That thing you said you'd do? That commitment from past-you? You can cancel it. You can change. Past-you didn't know what present-you would need. It's fine.", cta: "Growth looks like inconsistency sometimes" },
-      { title: "BEING BUSY ISN'T A PERSONALITY", subtitle: "Uncomfortable Truth No. 12", content: "Stop wearing exhaustion as a badge of honour. Being constantly overwhelmed doesn't make you important, it makes you tired. Rest isn't earned, it's required.", cta: "Productivity culture is a scam" },
-      { title: "SOME RELATIONSHIPS NEED TO END", subtitle: "Uncomfortable Truth No. 13", content: "Not every friendship is meant to last forever. Some people were right for a season and wrong for now. Letting go isn't failure, it's honesty.", cta: "Outgrowing people is growth" },
-      { title: "YOUR PARENTS WERE JUST WINGING IT", subtitle: "Uncomfortable Truth No. 14", content: "They didn't have all the answers. They made it up as they went along, just like you're doing now. Understanding this doesn't excuse everything, but it might explain some things.", cta: "We're all just confused children in ageing bodies" },
-      { title: "MOTIVATION IS A LIE", subtitle: "Uncomfortable Truth No. 15", content: "Waiting to feel motivated is waiting forever. Discipline is showing up even when you'd rather not. Especially when you'd rather not, actually.", cta: "Action creates motivation, not the other way round" },
-      { title: "YOU CAN'T HELP EVERYONE", subtitle: "Uncomfortable Truth No. 16", content: "Setting yourself on fire to keep others warm just means you both end up cold eventually. You're allowed to prioritise your own oxygen mask first.", cta: "Self-preservation isn't selfish" },
-      { title: "PERFECTIONISM IS JUST FEAR", subtitle: "Uncomfortable Truth No. 17", content: "That impossibly high standard isn't excellence, it's procrastination wearing a fancy outfit. Fear of being judged, wrapped up in the guise of 'doing it properly.'", cta: "Done is better than perfect" },
-      { title: "YOUR STRUGGLES ARE VALID", subtitle: "Uncomfortable Truth No. 18", content: "Just because someone has it worse doesn't mean you have it good. Pain isn't a competition. Your feelings are legitimate even if they seem trivial to others.", cta: "Comparison is the thief of self-compassion" },
-      { title: "NOSTALGIA IS A LIAR", subtitle: "Uncomfortable Truth No. 19", content: "The past wasn't better, you've just forgotten the bad bits. Your brain is editing reality like a dodgy Instagram filter. The 'good old days' had plenty of shit days too.", cta: "Memory is selective, reality was messy" },
-      { title: "ASKING FOR HELP IS STRENGTH", subtitle: "Uncomfortable Truth No. 20", content: "Struggling alone doesn't make you tough, it makes you isolated. Admitting you need support takes more courage than pretending you're fine. Stop being a martyr.", cta: "Vulnerability is brave, not weak" },
-      { title: "YOU'RE NOT LAZY, YOU'RE BURNT OUT", subtitle: "Uncomfortable Truth No. 21", content: "That overwhelming exhaustion isn't a character flaw. You're not broken. You've been running on fumes whilst being told to push harder. Your body is staging a coup.", cta: "Rest is the answer, not more coffee" },
-      { title: "CLOSURE IS A MYTH", subtitle: "Uncomfortable Truth No. 22", content: "Some things don't get tied up neatly. Some people never apologise. Some questions don't have answers. You have to make peace with the ambiguity and move on anyway.", cta: "Let go without the satisfying ending" },
-      { title: "HAPPINESS ISN'T THE DEFAULT", subtitle: "Uncomfortable Truth No. 23", content: "You're not meant to be happy all the time. Contentment, frustration, sadness, joy—they're all part of being human. Chasing constant happiness is exhausting and pointless.", cta: "Aim for okay, not ecstatic" },
-      { title: "YOUR TWENTIES ARE SUPPOSED TO BE CONFUSING", subtitle: "Uncomfortable Truth No. 24", content: "Everyone else is also lost, they're just quieter about it. No one has their life sorted at 25. Or 35. Or 45. We're all just pretending and hoping no one notices.", cta: "Confusion is the correct response to life" },
-      { title: "IT'S OKAY TO NOT BE OKAY", subtitle: "Uncomfortable Truth No. 25", content: "You don't need to perform wellness. You don't need to have it together. Some days survival is success. Give yourself permission to struggle without shame.", cta: "Existing is enough sometimes" }
+      { title: "FEELING LIKE SHIT IS DATA", subtitle: "Truth No. 1", content: "Your brain isn't broken for feeling rubbish. It's actually doing its job by telling you something needs attention. Whether you listen is another matter entirely.", cta: "Misery loves company (therapy)" },
+      { title: "THE STRATEGIC CRY", subtitle: "Truth No. 2", content: "Sometimes you just need a proper cry in the shower. It's not giving up—it's maintenance. Like defragging your emotional hard drive, but wetter.", cta: "Hydration comes in many forms" },
+      { title: "EVERYONE'S FAKING IT", subtitle: "Truth No. 3", content: "That person who looks like they've got it together? They don't. They're just better at hiding the chaos. We're all just winging it whilst pretending we have a plan.", cta: "Imposter syndrome is a club, not a flaw" },
+      { title: "SELF-CARE IS CRINGE BUT NECESSARY", subtitle: "Truth No. 4", content: "Yes, bubble baths and face masks feel silly. But so does having a breakdown in Sainsbury's. Pick your embarrassment wisely.", cta: "Choose your battles (and baths)" },
+      { title: "YOU CAN'T OPTIMISE YOUR WAY OUT", subtitle: "Truth No. 5", content: "No amount of morning routines, bullet journals, or productivity hacks will fix everything. Sometimes life's just a bit shit and you have to sit with that.", cta: "Accept the chaos, embrace the mess" },
+      { title: "THERAPY ISN'T MAGIC", subtitle: "Truth No. 6", content: "Talking to someone won't instantly fix you. It just means you're not suffering alone whilst also paying someone to witness your emotional car crash. Still worth it.", cta: "Professional validation hits different" },
+      { title: "REST WON'T FIX CAPITALISM", subtitle: "Truth No. 7", content: "Taking a nap won't solve systemic problems, but it might stop you from losing it entirely. Small mercies. Do what you can, then take a kip.", cta: "Survive now, revolt later" },
+      { title: "YOUR STANDARDS ARE UNREALISTIC", subtitle: "Truth No. 8", content: "The bar you've set for yourself is absurd and no one else is judging you this harshly. Lower it. Way lower. Ground floor, actually. Maybe basement.", cta: "Mediocrity is underrated" },
+      { title: "SOCIAL MEDIA IS A HIGHLIGHT REEL", subtitle: "Truth No. 9", content: "Everyone's posting their wins, not their 3am anxiety spirals. You're comparing your behind-the-scenes to everyone else's carefully curated performance. Stop it.", cta: "Your mess is normal, their feed is not" },
+      { title: "BOUNDARIES MAKE PEOPLE ANGRY", subtitle: "Truth No. 10", content: "Setting boundaries means some people will be upset with you. That's the point. Not everyone deserves unlimited access to your time and energy, even if they think they do.", cta: "Their discomfort isn't your responsibility" },
+      { title: "YOU'RE ALLOWED TO CHANGE YOUR MIND", subtitle: "Truth No. 11", content: "That thing you said you'd do? That commitment from past-you? You can cancel it. You can change. Past-you didn't know what present-you would need. It's fine.", cta: "Growth looks like inconsistency sometimes" },
+      { title: "BEING BUSY ISN'T A PERSONALITY", subtitle: "Truth No. 12", content: "Stop wearing exhaustion as a badge of honour. Being constantly overwhelmed doesn't make you important, it makes you tired. Rest isn't earned, it's required.", cta: "Productivity culture is a scam" },
+      { title: "SOME RELATIONSHIPS NEED TO END", subtitle: "Truth No. 13", content: "Not every friendship is meant to last forever. Some people were right for a season and wrong for now. Letting go isn't failure, it's honesty.", cta: "Outgrowing people is growth" },
+      { title: "YOUR PARENTS WERE JUST WINGING IT", subtitle: "Truth No. 14", content: "They didn't have all the answers. They made it up as they went along, just like you're doing now. Understanding this doesn't excuse everything, but it might explain some things.", cta: "We're all just confused children in ageing bodies" },
+      { title: "MOTIVATION IS A LIE", subtitle: "Truth No. 15", content: "Waiting to feel motivated is waiting forever. Discipline is showing up even when you'd rather not. Especially when you'd rather not, actually.", cta: "Action creates motivation, not the other way round" },
+      { title: "YOU CAN'T HELP EVERYONE", subtitle: "Truth No. 16", content: "Setting yourself on fire to keep others warm just means you both end up cold eventually. You're allowed to prioritise your own oxygen mask first.", cta: "Self-preservation isn't selfish" },
+      { title: "PERFECTIONISM IS JUST FEAR", subtitle: "Truth No. 17", content: "That impossibly high standard isn't excellence, it's procrastination wearing a fancy outfit. Fear of being judged, wrapped up in the guise of 'doing it properly.'", cta: "Done is better than perfect" },
+      { title: "YOUR STRUGGLES ARE VALID", subtitle: "Truth No. 18", content: "Just because someone has it worse doesn't mean you have it good. Pain isn't a competition. Your feelings are legitimate even if they seem trivial to others.", cta: "Comparison is the thief of self-compassion" },
+      { title: "NOSTALGIA IS A LIAR", subtitle: "Truth No. 19", content: "The past wasn't better, you've just forgotten the bad bits. Your brain is editing reality like a dodgy Instagram filter. The 'good old days' had plenty of shit days too.", cta: "Memory is selective, reality was messy" },
+      { title: "ASKING FOR HELP IS STRENGTH", subtitle: "Truth No. 20", content: "Struggling alone doesn't make you tough, it makes you isolated. Admitting you need support takes more courage than pretending you're fine. Stop being a martyr.", cta: "Vulnerability is brave, not weak" },
+      { title: "YOU'RE NOT LAZY, YOU'RE BURNT OUT", subtitle: "Truth No. 21", content: "That overwhelming exhaustion isn't a character flaw. You're not broken. You've been running on fumes whilst being told to push harder. Your body is staging a coup.", cta: "Rest is the answer, not more coffee" },
+      { title: "CLOSURE IS A MYTH", subtitle: "Truth No. 22", content: "Some things don't get tied up neatly. Some people never apologise. Some questions don't have answers. You have to make peace with the ambiguity and move on anyway.", cta: "Let go without the satisfying ending" },
+      { title: "HAPPINESS ISN'T THE DEFAULT", subtitle: "Truth No. 23", content: "You're not meant to be happy all the time. Contentment, frustration, sadness, joy—they're all part of being human. Chasing constant happiness is exhausting and pointless.", cta: "Aim for okay, not ecstatic" },
+      { title: "YOUR TWENTIES ARE SUPPOSED TO BE CONFUSING", subtitle: "Truth No. 24", content: "Everyone else is also lost, they're just quieter about it. No one has their life sorted at 25. Or 35. Or 45. We're all just pretending and hoping no one notices.", cta: "Confusion is the correct response to life" },
+      { title: "IT'S OKAY TO NOT BE OKAY", subtitle: "Truth No. 25", content: "You don't need to perform wellness. You don't need to have it together. Some days survival is success. Give yourself permission to struggle without shame.", cta: "Existing is enough sometimes" }
     ];
 
     const affirmations = [
@@ -585,7 +585,7 @@
       ctx.fillStyle = '#ffffff';
       ctx.font = 'bold 70px Arial';
       ctx.textAlign = 'center';
-      ctx.fillText('UNCOMFORTABLE TRUTH', 540, 350);
+      ctx.fillText('TRUTH • HUMOUR • HUMANITY', 540, 350);
       
       ctx.fillStyle = '#a3a3a3';
       ctx.font = '28px Arial';
@@ -626,7 +626,7 @@
       
       ctx.fillStyle = '#737373';
       ctx.font = '22px Arial';
-      ctx.fillText('FESTIVE REALITY CHECK', 540, 1850);
+      ctx.fillText('A DIGITAL CRACKER FOR FEELINGS', 540, 1850);
       
       canvas.toBlob(blob => {
         const url = URL.createObjectURL(blob);
