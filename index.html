@@ -4,973 +4,525 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Christmas Cracker - Festive Reality Check 🎄</title>
-  <meta name="description" content="Pull a digital Christmas cracker for your uncomfortable truth. British humor meets mental health.">
   
-  <!-- React and Babel -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
     }
     
     body {
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
       font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      background: #0a0a0a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      overflow-x: hidden;
+    }
+
+    .hidden { display: none !important; }
+
+    @keyframes snowfall {
+      to { transform: translateY(100vh) translateX(50px); }
     }
     
-    /* Utility classes */
-    .fixed { position: fixed; }
-    .absolute { position: absolute; }
-    .relative { position: relative; }
-    .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
-    .z-50 { z-index: 50; }
-    .z-10 { z-index: 10; }
-    
-    .flex { display: flex; }
-    .inline-block { display: inline-block; }
-    .block { display: block; }
-    .items-center { align-items: center; }
-    .items-start { align-items: flex-start; }
-    .justify-center { justify-content: center; }
-    .flex-col { flex-direction: column; }
-    .flex-1 { flex: 1; }
-    .flex-shrink-0 { flex-shrink: 0; }
-    .gap-0 { gap: 0; }
-    .gap-2 { gap: 0.5rem; }
-    .gap-4 { gap: 1rem; }
-    
-    .min-h-screen { min-height: 100vh; }
-    .w-full { width: 100%; }
-    .max-w-3xl { max-width: 48rem; }
-    .max-w-md { max-width: 28rem; }
-    
-    .p-6 { padding: 1.5rem; }
-    .p-8 { padding: 2rem; }
-    .px-8 { padding-left: 2rem; padding-right: 2rem; }
-    .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
-    .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
-    .pt-4 { padding-top: 1rem; }
-    .pt-8 { padding-top: 2rem; }
-    .mb-2 { margin-bottom: 0.5rem; }
-    .mb-3 { margin-bottom: 0.75rem; }
-    .mb-4 { margin-bottom: 1rem; }
-    .mb-6 { margin-bottom: 1.5rem; }
-    .mb-12 { margin-bottom: 3rem; }
-    .mb-16 { margin-bottom: 4rem; }
-    .mt-12 { margin-top: 3rem; }
-    .mt-16 { margin-top: 4rem; }
-    .mx-auto { margin-left: auto; margin-right: auto; }
-    .mx-4 { margin-left: 1rem; margin-right: 1rem; }
-    
-    .text-center { text-align: center; }
-    .text-white { color: #ffffff; }
-    .text-black { color: #000000; }
-    .text-xs { font-size: 0.75rem; line-height: 1rem; }
-    .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
-    .text-base { font-size: 1rem; line-height: 1.5rem; }
-    .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
-    .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
-    .text-2xl { font-size: 1.5rem; line-height: 2rem; }
-    .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
-    .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
-    .text-5xl { font-size: 3rem; line-height: 1; }
-    .text-6xl { font-size: 3.75rem; line-height: 1; }
-    .text-7xl { font-size: 4.5rem; line-height: 1; }
-    .text-8xl { font-size: 6rem; line-height: 1; }
-    
-    .font-medium { font-weight: 500; }
-    .font-bold { font-weight: 700; }
-    .leading-none { line-height: 1; }
-    .leading-tight { line-height: 1.25; }
-    .leading-relaxed { line-height: 1.625; }
-    .tracking-wide { letter-spacing: 0.025em; }
-    .tracking-wider { letter-spacing: 0.05em; }
-    .tracking-widest { letter-spacing: 0.1em; }
-    
-    .bg-white { background-color: #ffffff; }
-    .bg-red-600 { background-color: #dc2626; }
-    .border-2 { border-width: 2px; }
-    .border-red-600 { border-color: #dc2626; }
-    .border-neutral-700 { border-color: #404040; }
-    
-    .cursor-pointer { cursor: pointer; }
-    .pointer-events-none { pointer-events: none; }
-    .overflow-hidden { overflow: hidden; }
-    .transition-opacity { transition-property: opacity; transition-duration: 150ms; }
-    .transition-all { transition-property: all; transition-duration: 150ms; }
-    .transition-colors { transition-property: color, background-color, border-color; transition-duration: 150ms; }
-    
-    .hover\:opacity-80:hover { opacity: 0.8; }
-    .hover\:bg-neutral-200:hover { background-color: #e5e5e5; }
-    .hover\:from-red-700:hover { background-image: linear-gradient(to right, #b91c1c, #b91c1c); }
-    
-    .transform { transform: translateZ(0); }
-    .-translate-x-1\/2 { transform: translateX(-50%); }
-    .-translate-y-1\/2 { transform: translateY(-50%); }
-    
-    .text-neutral-400 { color: #a3a3a3; }
-    .text-neutral-500 { color: #737373; }
-    .text-neutral-600 { color: #525252; }
-    .text-neutral-200 { color: #e5e5e5; }
-    .text-neutral-300 { color: #d4d4d4; }
-    .text-yellow-300 { color: #fde047; }
-    
-    .bg-gradient-to-r {
-      background-image: linear-gradient(to right, var(--tw-gradient-stops));
-    }
-    .from-red-600 { --tw-gradient-from: #dc2626; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(220, 38, 38, 0)); }
-    .to-red-700 { --tw-gradient-to: #b91c1c; }
-    .from-yellow-500 { --tw-gradient-from: #eab308; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(234, 179, 8, 0)); }
-    .to-yellow-400 { --tw-gradient-to: #facc15; }
-    
-    .opacity-20 { opacity: 0.2; }
-    
-    .h-3 { height: 0.75rem; }
-    .h-24 { height: 6rem; }
-    .h-32 { height: 8rem; }
-    .w-16 { width: 4rem; }
-    .w-20 { width: 5rem; }
-    .top-0 { top: 0; }
-    .left-0 { left: 0; }
-    .right-0 { right: 0; }
-    .bottom-0 { bottom: 0; }
-    .top-1\/2 { top: 50%; }
-    .left-1\/2 { left: 50%; }
-    
-    /* Responsive */
-    @media (min-width: 768px) {
-      .md\:p-10 { padding: 2.5rem; }
-      .md\:p-12 { padding: 3rem; }
-      .md\:text-base { font-size: 1rem; line-height: 1.5rem; }
-      .md\:text-lg { font-size: 1.125rem; line-height: 1.75rem; }
-      .md\:text-2xl { font-size: 1.5rem; line-height: 2rem; }
-      .md\:text-5xl { font-size: 3rem; line-height: 1; }
-      .md\:text-7xl { font-size: 4.5rem; line-height: 1; }
-      .md\:text-8xl { font-size: 6rem; line-height: 1; }
-      .md\:w-20 { width: 5rem; }
-      .md\:h-32 { height: 8rem; }
-      .md\:space-y-8 > * + * { margin-top: 2rem; }
+    @keyframes marquee {
+      to { transform: translateX(-50%); }
     }
     
+    @keyframes pullLeft {
+      to { transform: translateX(-60px) scaleX(0.8); opacity: 0; }
+    }
+    
+    @keyframes pullRight {
+      to { transform: translateX(60px) scaleX(0.8); opacity: 0; }
+    }
+    
+    @keyframes pop {
+      to { transform: scale(0.8); opacity: 0; }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .snow-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .snowflake {
+      position: absolute;
+      color: white;
+      opacity: 0.6;
+      animation: snowfall linear infinite;
+    }
+
+    .marquee-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #dc2626;
+      padding: 0.5rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      z-index: 50;
+    }
+
+    .marquee {
+      display: inline-block;
+      animation: marquee 20s linear infinite;
+    }
+
+    .marquee span {
+      color: white;
+      font-size: 0.875rem;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      margin: 0 1rem;
+    }
+
+    .container {
+      max-width: 48rem;
+      width: 100%;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 4rem;
+      margin-top: 3rem;
+    }
+
+    .header-subtitle {
+      color: #737373;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+
+    .header-title {
+      color: white;
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      line-height: 1;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+
+    .header-desc {
+      color: #a3a3a3;
+      font-size: 0.875rem;
+      max-width: 28rem;
+      margin: 0 auto;
+      line-height: 1.625;
+    }
+
+    .cracker-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .pulling .left-end { animation: pullLeft 0.7s forwards; }
+    .pulling .right-end { animation: pullRight 0.7s forwards; }
+    .popped .cracker-body { animation: pop 0.3s forwards; }
+
+    .cracker-end {
+      width: 4rem;
+      height: 6rem;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .cracker-body {
+      position: relative;
+      width: 200px;
+      height: 100px;
+      cursor: pointer;
+      background: #dc2626;
+    }
+
+    .cracker-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+    }
+
+    .stripe-top, .stripe-bottom {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 0.75rem;
+      background: linear-gradient(to right, #eab308, #facc15);
+    }
+
+    .stripe-top { top: 0; }
+    .stripe-bottom { bottom: 0; }
+
+    .sparkle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fde047;
+      font-size: 1.25rem;
+    }
+
+    .results {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s forwards;
+      opacity: 0;
+    }
+
+    .pop-title {
+      color: white;
+      font-size: 3.75rem;
+      font-weight: bold;
+      font-family: 'Bebas Neue', sans-serif;
+      cursor: pointer;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .pop-title:hover { opacity: 0.8; }
+
+    .pop-sub {
+      color: #737373;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+
+    .card {
+      border: 2px solid #dc2626;
+      padding: 2rem;
+    }
+
+    .card-title {
+      color: white;
+      font-size: 1.875rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+
+    .card-subtitle {
+      color: #a3a3a3;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .card-content {
+      color: #d4d4d4;
+      font-size: 1rem;
+      line-height: 1.625;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-cta {
+      color: white;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .white-card {
+      background: white;
+      padding: 2rem;
+    }
+
+    .white-card-label {
+      color: #525252;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+
+    .white-card-text {
+      color: black;
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+
+    .gift-card {
+      border: 2px solid #404040;
+      padding: 2rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .gift-icon {
+      font-size: 2.25rem;
+    }
+
+    .gift-label {
+      color: #737373;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .gift-text {
+      color: #e5e5e5;
+      font-size: 1rem;
+      line-height: 1.625;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding-top: 1rem;
+    }
+
+    button {
+      padding: 1rem 2rem;
+      font-size: 0.875rem;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s;
+    }
+
+    .btn-share {
+      background: linear-gradient(to right, #dc2626, #b91c1c);
+      color: white;
+    }
+
+    .btn-share:hover {
+      background: linear-gradient(to right, #b91c1c, #991b1b);
+    }
+
+    .btn-reset {
+      background: white;
+      color: black;
+    }
+
+    .btn-reset:hover {
+      background: #e5e5e5;
+    }
+
+    .footer-note {
+      text-align: center;
+      padding-top: 2rem;
+      color: #525252;
+      font-size: 0.75rem;
+      line-height: 1.625;
+      max-width: 28rem;
+      margin: 0 auto;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 4rem;
+      color: #525252;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+    }
+
     @media (min-width: 640px) {
-      .sm\:flex-row { flex-direction: row; }
+      .buttons { flex-direction: row; }
     }
-    
-    .space-y-6 > * + * { margin-top: 1.5rem; }
-    .space-y-8 > * + * { margin-top: 2rem; }
+
+    @media (min-width: 768px) {
+      .header-title { font-size: 4.5rem; }
+      .cracker-end { width: 5rem; height: 8rem; }
+      .pop-title { font-size: 6rem; }
+      .card { padding: 3rem; }
+      .card-title { font-size: 3rem; }
+      .card-content { font-size: 1.125rem; }
+      .white-card { padding: 2.5rem; }
+      .white-card-text { font-size: 1.5rem; }
+      .gift-card { padding: 2.5rem; }
+      .gift-text { font-size: 1.125rem; }
+      .results { gap: 2rem; }
+    }
   </style>
 </head>
 <body>
-  <div id="root"></div>
+  <div class="snow-container" id="snow"></div>
+  <div class="marquee-wrapper" id="marquee">
+    <div class="marquee">
+      <span>🎄 UNCOMFORTABLE TRUTHS · EMOTIONAL HONESTY · RADICAL ACCEPTANCE 🎄</span>
+      <span>🎄 UNCOMFORTABLE TRUTHS · EMOTIONAL HONESTY · RADICAL ACCEPTANCE 🎄</span>
+      <span>🎄 UNCOMFORTABLE TRUTHS · EMOTIONAL HONESTY · RADICAL ACCEPTANCE 🎄</span>
+    </div>
+  </div>
 
-  <script type="text/babel">
-    const { useState, useRef } = React;
+  <div class="container">
+    <div id="homeScreen">
+      <div class="header">
+        <div class="header-subtitle">FESTIVE REALITY CHECK 🎄</div>
+        <h1 class="header-title">PULL FOR<br/>TRUTH</h1>
+        <p class="header-desc">
+          Honest mental health chat disguised as festive fun.<br/>
+          Click to reveal your uncomfortable truth.
+        </p>
+      </div>
 
-    function ChristmasCracker() {
-      const [isPulling, setIsPulling] = useState(false);
-      const [hasPopped, setHasPopped] = useState(false);
-      const [showContent, setShowContent] = useState(false);
-      const shareCardRef = useRef(null);
+      <div class="cracker-wrapper" id="crackerWrapper">
+        <div class="cracker-end left-end" onclick="pull()" style="clip-path: polygon(0 50%, 100% 25%, 100% 75%); background: linear-gradient(135deg, #dc2626, #b91c1c);">
+          <div class="sparkle">✨</div>
+        </div>
+        <div class="cracker-body" onclick="pull()">
+          <div class="cracker-text">CLICK</div>
+          <div class="stripe-top"></div>
+          <div class="stripe-bottom"></div>
+        </div>
+        <div class="cracker-end right-end" onclick="pull()" style="clip-path: polygon(100% 50%, 0 25%, 0 75%); background: linear-gradient(135deg, #b91c1c, #dc2626);">
+          <div class="sparkle">✨</div>
+        </div>
+      </div>
 
-      const mentalHealthTips = [
-        {
-          title: "FEELING LIKE SHIT IS DATA",
-          subtitle: "Uncomfortable Truth No. 1",
-          content: "Your brain isn't broken for feeling rubbish. It's actually doing its job by telling you something needs attention. Whether you listen is another matter entirely.",
-          cta: "Misery loves company (therapy)"
-        },
-        {
-          title: "THE STRATEGIC CRY",
-          subtitle: "Uncomfortable Truth No. 2", 
-          content: "Sometimes you just need a proper cry in the shower. It's not giving up—it's maintenance. Like defragging your emotional hard drive, but wetter.",
-          cta: "Hydration comes in many forms"
-        },
-        {
-          title: "EVERYONE'S FAKING IT",
-          subtitle: "Uncomfortable Truth No. 3",
-          content: "That person who looks like they've got it together? They don't. They're just better at hiding the chaos. We're all just winging it whilst pretending we have a plan.",
-          cta: "Imposter syndrome is a club, not a flaw"
-        },
-        {
-          title: "SELF-CARE IS CRINGE BUT NECESSARY",
-          subtitle: "Uncomfortable Truth No. 4",
-          content: "Yes, bubble baths and face masks feel silly. But so does having a breakdown in Sainsbury's. Pick your embarrassment wisely.",
-          cta: "Choose your battles (and baths)"
-        },
-        {
-          title: "YOU CAN'T OPTIMISE YOUR WAY OUT",
-          subtitle: "Uncomfortable Truth No. 5",
-          content: "No amount of morning routines, bullet journals, or productivity hacks will fix everything. Sometimes life's just a bit shit and you have to sit with that.",
-          cta: "Accept the chaos, embrace the mess"
-        },
-        {
-          title: "THERAPY ISN'T MAGIC",
-          subtitle: "Uncomfortable Truth No. 6",
-          content: "Talking to someone won't instantly fix you. It just means you're not suffering alone whilst also paying someone to witness your emotional car crash. Still worth it.",
-          cta: "Professional validation hits different"
-        },
-        {
-          title: "REST WON'T FIX CAPITALISM",
-          subtitle: "Uncomfortable Truth No. 7",
-          content: "Taking a nap won't solve systemic problems, but it might stop you from losing it entirely. Small mercies. Do what you can, then take a kip.",
-          cta: "Survive now, revolt later"
-        },
-        {
-          title: "YOUR STANDARDS ARE UNREALISTIC",
-          subtitle: "Uncomfortable Truth No. 8",
-          content: "The bar you've set for yourself is absurd and no one else is judging you this harshly. Lower it. Way lower. Ground floor, actually. Maybe basement.",
-          cta: "Mediocrity is underrated"
-        },
-        {
-          title: "SOCIAL MEDIA IS A HIGHLIGHT REEL",
-          subtitle: "Uncomfortable Truth No. 9",
-          content: "Everyone's posting their wins, not their 3am anxiety spirals. You're comparing your behind-the-scenes to everyone else's carefully curated performance. Stop it.",
-          cta: "Your mess is normal, their feed is not"
-        },
-        {
-          title: "BOUNDARIES MAKE PEOPLE ANGRY",
-          subtitle: "Uncomfortable Truth No. 10",
-          content: "Setting boundaries means some people will be upset with you. That's the point. Not everyone deserves unlimited access to your time and energy, even if they think they do.",
-          cta: "Their discomfort isn't your responsibility"
-        },
-        {
-          title: "YOU'RE ALLOWED TO CHANGE YOUR MIND",
-          subtitle: "Uncomfortable Truth No. 11",
-          content: "That thing you said you'd do? That commitment from past-you? You can cancel it. You can change. Past-you didn't know what present-you would need. It's fine.",
-          cta: "Growth looks like inconsistency sometimes"
-        },
-        {
-          title: "BEING BUSY ISN'T A PERSONALITY",
-          subtitle: "Uncomfortable Truth No. 12",
-          content: "Stop wearing exhaustion as a badge of honour. Being constantly overwhelmed doesn't make you important, it makes you tired. Rest isn't earned, it's required.",
-          cta: "Productivity culture is a scam"
-        },
-        {
-          title: "SOME RELATIONSHIPS NEED TO END",
-          subtitle: "Uncomfortable Truth No. 13",
-          content: "Not every friendship is meant to last forever. Some people were right for a season and wrong for now. Letting go isn't failure, it's honesty.",
-          cta: "Outgrowing people is growth"
-        },
-        {
-          title: "YOUR PARENTS WERE JUST WINGING IT",
-          subtitle: "Uncomfortable Truth No. 14",
-          content: "They didn't have all the answers. They made it up as they went along, just like you're doing now. Understanding this doesn't excuse everything, but it might explain some things.",
-          cta: "We're all just confused children in ageing bodies"
-        },
-        {
-          title: "MOTIVATION IS A LIE",
-          subtitle: "Uncomfortable Truth No. 15",
-          content: "Waiting to feel motivated is waiting forever. Discipline is showing up even when you'd rather not. Especially when you'd rather not, actually.",
-          cta: "Action creates motivation, not the other way round"
-        },
-        {
-          title: "YOU CAN'T HELP EVERYONE",
-          subtitle: "Uncomfortable Truth No. 16",
-          content: "Setting yourself on fire to keep others warm just means you both end up cold eventually. You're allowed to prioritise your own oxygen mask first.",
-          cta: "Self-preservation isn't selfish"
-        },
-        {
-          title: "PERFECTIONISM IS JUST FEAR",
-          subtitle: "Uncomfortable Truth No. 17",
-          content: "That impossibly high standard isn't excellence, it's procrastination wearing a fancy outfit. Fear of being judged, wrapped up in the guise of 'doing it properly.'",
-          cta: "Done is better than perfect"
-        },
-        {
-          title: "YOUR STRUGGLES ARE VALID",
-          subtitle: "Uncomfortable Truth No. 18",
-          content: "Just because someone has it worse doesn't mean you have it good. Pain isn't a competition. Your feelings are legitimate even if they seem trivial to others.",
-          cta: "Comparison is the thief of self-compassion"
-        },
-        {
-          title: "NOSTALGIA IS A LIAR",
-          subtitle: "Uncomfortable Truth No. 19",
-          content: "The past wasn't better, you've just forgotten the bad bits. Your brain is editing reality like a dodgy Instagram filter. The 'good old days' had plenty of shit days too.",
-          cta: "Memory is selective, reality was messy"
-        },
-        {
-          title: "ASKING FOR HELP IS STRENGTH",
-          subtitle: "Uncomfortable Truth No. 20",
-          content: "Struggling alone doesn't make you tough, it makes you isolated. Admitting you need support takes more courage than pretending you're fine. Stop being a martyr.",
-          cta: "Vulnerability is brave, not weak"
-        },
-        {
-          title: "YOU'RE NOT LAZY, YOU'RE BURNT OUT",
-          subtitle: "Uncomfortable Truth No. 21",
-          content: "That overwhelming exhaustion isn't a character flaw. You're not broken. You've been running on fumes whilst being told to push harder. Your body is staging a coup.",
-          cta: "Rest is the answer, not more coffee"
-        },
-        {
-          title: "CLOSURE IS A MYTH",
-          subtitle: "Uncomfortable Truth No. 22",
-          content: "Some things don't get tied up neatly. Some people never apologise. Some questions don't have answers. You have to make peace with the ambiguity and move on anyway.",
-          cta: "Let go without the satisfying ending"
-        },
-        {
-          title: "HAPPINESS ISN'T THE DEFAULT",
-          subtitle: "Uncomfortable Truth No. 23",
-          content: "You're not meant to be happy all the time. Contentment, frustration, sadness, joy—they're all part of being human. Chasing constant happiness is exhausting and pointless.",
-          cta: "Aim for okay, not ecstatic"
-        },
-        {
-          title: "YOUR TWENTIES ARE SUPPOSED TO BE CONFUSING",
-          subtitle: "Uncomfortable Truth No. 24",
-          content: "Everyone else is also lost, they're just quieter about it. No one has their life sorted at 25. Or 35. Or 45. We're all just pretending and hoping no one notices.",
-          cta: "Confusion is the correct response to life"
-        },
-        {
-          title: "IT'S OKAY TO NOT BE OKAY",
-          subtitle: "Uncomfortable Truth No. 25",
-          content: "You don't need to perform wellness. You don't need to have it together. Some days survival is success. Give yourself permission to struggle without shame.",
-          cta: "Existing is enough sometimes"
-        }
-      ];
+      <div class="footer">DESIGNED FOR EMOTIONAL HONESTY 🎄</div>
+    </div>
 
-      const affirmations = [
-        "You're doing alright for someone who's winging it",
-        "Being a functional disaster is still functional",
-        "Your anxiety is lying to you (probably)",
-        "It's fine to be fine with not being fine",
-        "Everyone's a mess, some are just quieter about it",
-        "You've survived 100% of your bad days so far. Solid track record.",
-        "Not today, existential dread. Not today.",
-        "Good enough is literally enough",
-        "Your past self would be impressed you're still here",
-        "Struggling doesn't mean failing",
-        "You don't owe anyone an explanation for taking care of yourself",
-        "Being tired of trying doesn't make you weak",
-        "Your feelings make sense, even when they don't",
-        "You're allowed to rest before you're completely broken",
-        "Not everyone will understand you, and that's fine",
-        "You're more resilient than you give yourself credit for",
-        "Asking for help doesn't diminish your worth",
-        "You're allowed to take up space",
-        "Your mental health is just as important as your physical health",
-        "Progress isn't always visible, but it's still happening",
-        "You're not behind—everyone's on their own timeline",
-        "It's okay to be a work in progress forever",
-        "You deserve kindness, especially from yourself",
-        "Bad days don't cancel out good ones",
-        "You're allowed to change, grow, and contradict past versions of yourself"
-      ];
+    <div id="resultScreen" class="hidden">
+      <div class="results">
+        <div class="fade-in">
+          <div class="pop-title" onclick="reset()">*POP* 🎄</div>
+          <div class="pop-sub">YOUR REALITY CHECK</div>
+        </div>
 
-      const gifts = [
-        "Permission to cancel plans without guilt",
-        "The knowledge that everyone else is also pretending",
-        "Acceptance that you can't fix yourself in one weekend",
-        "Understanding that rest isn't lazy, it's strategic",
-        "Recognition that asking 'are you okay' is harder than it sounds",
-        "The reminder that professional help isn't admitting defeat",
-        "Acknowledgment that sometimes a cup of tea IS the answer",
-        "Validation that feeling overwhelmed doesn't make you weak",
-        "Permission to say no without elaborate excuses",
-        "Understanding that healing isn't linear or tidy",
-        "Acceptance that some days surviving is thriving",
-        "The reminder that you don't have to earn rest",
-        "Recognition that setting boundaries isn't selfish",
-        "Permission to disappoint people who had unrealistic expectations",
-        "Understanding that your worth isn't tied to productivity",
-        "Acceptance that you can't please everyone (and shouldn't try)",
-        "The reminder that comparison is a joy thief",
-        "Recognition that your struggles are valid regardless of others'",
-        "Permission to take things one day at a time",
-        "Understanding that closure doesn't always come from others",
-        "Acceptance that some relationships are meant to end",
-        "The reminder that being vulnerable is courageous",
-        "Recognition that self-care isn't always comfortable",
-        "Permission to outgrow people, places, and past versions of yourself",
-        "Understanding that asking for space doesn't mean you don't care"
-      ];
+        <div class="fade-in card" style="animation-delay: 0.1s">
+          <div class="card-subtitle" id="tipSub"></div>
+          <h2 class="card-title" id="tipTitle"></h2>
+          <p class="card-content" id="tipContent"></p>
+          <div class="card-cta" id="tipCta"></div>
+        </div>
 
-      const [selectedTip, setSelectedTip] = useState(mentalHealthTips[Math.floor(Math.random() * mentalHealthTips.length)]);
-      const [selectedAffirmation, setSelectedAffirmation] = useState(affirmations[Math.floor(Math.random() * affirmations.length)]);
-      const [selectedGift, setSelectedGift] = useState(gifts[Math.floor(Math.random() * gifts.length)]);
+        <div class="fade-in white-card" style="animation-delay: 0.2s">
+          <div class="white-card-label">SLIGHTLY HELPFUL REMINDER 🎁</div>
+          <p class="white-card-text" id="affirmation"></p>
+        </div>
 
-      const handleShare = async () => {
-        try {
-          const canvas = document.createElement('canvas');
-          canvas.width = 1080;
-          canvas.height = 1920;
-          const ctx = canvas.getContext('2d');
-
-          if (!ctx) {
-            alert('Unable to create image. Please try again.');
-            return;
-          }
-
-          ctx.fillStyle = '#0a0a0a';
-          ctx.fillRect(0, 0, 1080, 1920);
-
-          ctx.fillStyle = '#ffffff';
-          for (let i = 0; i < 30; i++) {
-            const x = Math.random() * 1080;
-            const y = Math.random() * 300;
-            const size = Math.random() * 4 + 2;
-            ctx.beginPath();
-            ctx.arc(x, y, size, 0, Math.PI * 2);
-            ctx.fill();
-          }
-
-          ctx.fillStyle = '#dc2626';
-          ctx.fillRect(0, 0, 1080, 30);
-
-          ctx.font = '60px Arial';
-          ctx.fillText('🎄', 100, 180);
-          ctx.fillText('🎄', 920, 180);
-
-          ctx.fillStyle = '#ffffff';
-          ctx.font = 'bold 70px Arial, sans-serif';
-          ctx.textAlign = 'center';
-          ctx.fillText('UNCOMFORTABLE TRUTH', 540, 350);
-
-          ctx.fillStyle = '#a3a3a3';
-          ctx.font = '28px Arial, sans-serif';
-          ctx.fillText(selectedTip.subtitle, 540, 420);
-
-          ctx.fillStyle = '#dc2626';
-          ctx.fillRect(100, 480, 880, 4);
-
-          ctx.fillStyle = '#ffffff';
-          ctx.font = 'bold 60px Arial, sans-serif';
-          ctx.textAlign = 'center';
-          
-          const titleWords = selectedTip.title.split(' ');
-          let titleY = 600;
-          let titleLine = '';
-          
-          titleWords.forEach((word, index) => {
-            const testLine = titleLine + word + ' ';
-            const metrics = ctx.measureText(testLine);
-            
-            if (metrics.width > 900 && titleLine !== '') {
-              ctx.fillText(titleLine.trim(), 540, titleY);
-              titleLine = word + ' ';
-              titleY += 75;
-            } else {
-              titleLine = testLine;
-            }
-            
-            if (index === titleWords.length - 1) {
-              ctx.fillText(titleLine.trim(), 540, titleY);
-            }
-          });
-
-          ctx.fillStyle = '#d4d4d4';
-          ctx.font = '32px Arial, sans-serif';
-          ctx.textAlign = 'center';
-          
-          const contentWords = selectedTip.content.split(' ');
-          let contentLine = '';
-          let contentY = titleY + 120;
-          
-          contentWords.forEach((word, index) => {
-            const testLine = contentLine + word + ' ';
-            const metrics = ctx.measureText(testLine);
-            
-            if (metrics.width > 900 && contentLine !== '') {
-              ctx.fillText(contentLine.trim(), 540, contentY);
-              contentLine = word + ' ';
-              contentY += 50;
-            } else {
-              contentLine = testLine;
-            }
-            
-            if (index === contentWords.length - 1) {
-              ctx.fillText(contentLine.trim(), 540, contentY);
-            }
-          });
-
-          ctx.fillStyle = '#ffffff';
-          ctx.font = 'bold 26px Arial, sans-serif';
-          ctx.fillText('— ' + selectedTip.cta, 540, contentY + 100);
-
-          ctx.fillStyle = '#dc2626';
-          ctx.fillRect(0, 1890, 1080, 30);
-
-          ctx.fillStyle = '#737373';
-          ctx.font = '22px Arial, sans-serif';
-          ctx.fillText('FESTIVE REALITY CHECK', 540, 1850);
-
-          canvas.toBlob(async (blob) => {
-            if (!blob) {
-              alert('Unable to create image. Please try again.');
-              return;
-            }
-
-            const imageUrl = URL.createObjectURL(blob);
-
-            if (navigator.share) {
-              try {
-                const file = new File([blob], 'christmas-cracker.png', { type: 'image/png' });
-                await navigator.share({
-                  files: [file],
-                  title: 'Uncomfortable Truth',
-                  text: 'My festive reality check 🎄'
-                });
-                URL.revokeObjectURL(imageUrl);
-                return;
-              } catch (err) {
-                if (err.name === 'AbortError') {
-                  URL.revokeObjectURL(imageUrl);
-                  return;
-                }
-                console.log('Web Share failed, using fallback');
-              }
-            }
-
-            const newTab = window.open('', '_blank');
-            
-            if (newTab) {
-              newTab.document.write(`
-                <!DOCTYPE html>
-                <html>
-                <head>
-                  <meta charset="UTF-8">
-                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                  <title>Your Christmas Cracker Truth</title>
-                  <style>
-                    * { margin: 0; padding: 0; box-sizing: border-box; }
-                    body {
-                      background: #0a0a0a;
-                      display: flex;
-                      flex-direction: column;
-                      align-items: center;
-                      justify-content: center;
-                      min-height: 100vh;
-                      padding: 20px;
-                      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-                    }
-                    .container { max-width: 600px; width: 100%; }
-                    img {
-                      width: 100%;
-                      height: auto;
-                      display: block;
-                      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-                    }
-                    .instructions {
-                      color: #fff;
-                      text-align: center;
-                      margin-top: 30px;
-                    }
-                    .instructions h2 {
-                      font-size: 20px;
-                      font-weight: bold;
-                      margin-bottom: 15px;
-                      letter-spacing: 0.05em;
-                    }
-                    .instructions p {
-                      font-size: 14px;
-                      color: #a3a3a3;
-                      line-height: 1.8;
-                      margin-bottom: 10px;
-                    }
-                    .buttons {
-                      display: flex;
-                      gap: 10px;
-                      margin-top: 20px;
-                      flex-wrap: wrap;
-                      justify-content: center;
-                    }
-                    button, a {
-                      background: #dc2626;
-                      color: white;
-                      padding: 12px 24px;
-                      text-decoration: none;
-                      font-weight: bold;
-                      font-size: 12px;
-                      letter-spacing: 0.1em;
-                      cursor: pointer;
-                      border: none;
-                      transition: background 0.2s;
-                    }
-                    button:hover, a:hover { background: #b91c1c; }
-                    @media (max-width: 600px) {
-                      .instructions h2 { font-size: 18px; }
-                      .instructions p { font-size: 13px; }
-                    }
-                  </style>
-                </head>
-                <body>
-                  <div class="container">
-                    <img src="${imageUrl}" alt="Christmas Cracker Truth" id="shareImage" />
-                    <div class="instructions">
-                      <h2>📱 SHARE TO INSTAGRAM STORIES</h2>
-                      <p><strong>On Mobile:</strong> Long-press the image above and select "Share" to post directly to Instagram Stories.</p>
-                      <p><strong>On Desktop:</strong> Right-click the image and "Save image" to upload to Instagram later.</p>
-                      <div class="buttons">
-                        <button onclick="copyImage()">COPY IMAGE</button>
-                        <button onclick="downloadImage()">DOWNLOAD</button>
-                      </div>
-                    </div>
-                  </div>
-                  <script>
-                    async function copyImage() {
-                      try {
-                        const img = document.getElementById('shareImage');
-                        const response = await fetch(img.src);
-                        const blob = await response.blob();
-                        await navigator.clipboard.write([
-                          new ClipboardItem({ 'image/png': blob })
-                        ]);
-                        alert('Image copied! You can now paste it into Instagram or other apps.');
-                      } catch (err) {
-                        alert('Copy not supported on this device. Please long-press the image or right-click to save.');
-                      }
-                    }
-                    
-                    function downloadImage() {
-                      const a = document.createElement('a');
-                      a.href = '${imageUrl}';
-                      a.download = 'christmas-cracker-${Date.now()}.png';
-                      a.click();
-                    }
-                  </script>
-                </body>
-                </html>
-              `);
-              newTab.document.close();
-            } else {
-              alert('Please allow pop-ups to view your shareable image, or the image will download instead.');
-              const a = document.createElement('a');
-              a.href = imageUrl;
-              a.download = `christmas-cracker-${Date.now()}.png`;
-              document.body.appendChild(a);
-              a.click();
-              document.body.removeChild(a);
-              setTimeout(() => URL.revokeObjectURL(imageUrl), 100);
-            }
-          }, 'image/png');
-          
-        } catch (error) {
-          console.error('Error creating share image:', error);
-          alert('Something went wrong creating the image. Please try again.');
-        }
-      };
-
-      const handlePull = () => {
-        if (hasPopped) return;
-        
-        setIsPulling(true);
-        
-        setTimeout(() => {
-          setHasPopped(true);
-          setTimeout(() => {
-            setShowContent(true);
-          }, 300);
-        }, 700);
-      };
-
-      const reset = () => {
-        setIsPulling(false);
-        setHasPopped(false);
-        setShowContent(false);
-        
-        setSelectedTip(mentalHealthTips[Math.floor(Math.random() * mentalHealthTips.length)]);
-        setSelectedAffirmation(affirmations[Math.floor(Math.random() * affirmations.length)]);
-        setSelectedGift(gifts[Math.floor(Math.random() * gifts.length)]);
-      };
-
-      return (
-        <div className="min-h-screen flex items-center justify-center p-6 md:p-12"
-             style={{
-               backgroundColor: '#0a0a0a',
-               fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif'
-             }}>
-          
-          <style>{`
-            @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-            
-            * {
-              -webkit-font-smoothing: antialiased;
-              -moz-osx-font-smoothing: grayscale;
-            }
-            
-            @keyframes snowfall {
-              0% { transform: translateY(-10px) translateX(0); opacity: 0; }
-              10% { opacity: 1; }
-              90% { opacity: 1; }
-              100% { transform: translateY(100vh) translateX(50px); opacity: 0; }
-            }
-            
-            @keyframes marquee {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(-50%); }
-            }
-            
-            @keyframes pullLeft {
-              0% { transform: translateX(0) scaleX(1); opacity: 1; }
-              100% { transform: translateX(-60px) scaleX(0.8); opacity: 0; }
-            }
-            
-            @keyframes pullRight {
-              0% { transform: translateX(0) scaleX(1); opacity: 1; }
-              100% { transform: translateX(60px) scaleX(0.8); opacity: 0; }
-            }
-            
-            @keyframes pop {
-              0% { transform: scale(1); opacity: 1; }
-              100% { transform: scale(0.8); opacity: 0; }
-            }
-            
-            @keyframes fadeIn {
-              from { opacity: 0; transform: translateY(8px); }
-              to { opacity: 1; transform: translateY(0); }
-            }
-            
-            .snowflake {
-              position: absolute;
-              color: white;
-              opacity: 0.6;
-              animation: snowfall linear infinite;
-              pointer-events: none;
-              user-select: none;
-            }
-            
-            .cracker-pulling .left-end {
-              animation: pullLeft 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            }
-            
-            .cracker-pulling .right-end {
-              animation: pullRight 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            }
-            
-            .cracker-popped .cracker-body {
-              animation: pop 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            }
-            
-            .fade-in {
-              animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-              opacity: 0;
-            }
-            
-            .marquee-container {
-              overflow: hidden;
-              white-space: nowrap;
-            }
-            
-            .marquee {
-              display: inline-block;
-              animation: marquee 20s linear infinite;
-            }
-          `}</style>
-
-          <div className="fixed inset-0 pointer-events-none overflow-hidden">
-            {[...Array(25)].map((_, i) => (
-              <div
-                key={i}
-                className="snowflake"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  fontSize: `${Math.random() * 12 + 8}px`,
-                  animationDuration: `${Math.random() * 10 + 15}s`,
-                  animationDelay: `${Math.random() * 5}s`
-                }}
-              >
-                ❄
-              </div>
-            ))}
-          </div>
-
-          {!hasPopped && (
-            <div className="fixed top-0 left-0 right-0 py-2 marquee-container z-50"
-                 style={{ backgroundColor: '#dc2626' }}>
-              <div className="marquee">
-                <span className="text-white text-sm font-bold tracking-wider mx-4">
-                  🎄 UNCOMFORTABLE TRUTHS · EMOTIONAL HONESTY · RADICAL ACCEPTANCE 🎄
-                </span>
-                <span className="text-white text-sm font-bold tracking-wider mx-4">
-                  🎄 UNCOMFORTABLE TRUTHS · EMOTIONAL HONESTY · RADICAL ACCEPTANCE 🎄
-                </span>
-                <span className="text-white text-sm font-bold tracking-wider mx-4">
-                  🎄 UNCOMFORTABLE TRUTHS · EMOTIONAL HONESTY · RADICAL ACCEPTANCE 🎄
-                </span>
-              </div>
-            </div>
-          )}
-
-          <div className="max-w-3xl w-full">
-            {!hasPopped && (
-              <div className="text-center mb-16 mt-12">
-                <div className="text-neutral-500 text-xs tracking-widest mb-6 font-medium">
-                  FESTIVE REALITY CHECK 🎄
-                </div>
-                <h1 className="text-white text-5xl md:text-7xl font-bold mb-6 leading-none"
-                    style={{ 
-                      fontFamily: 'Bebas Neue, sans-serif',
-                      letterSpacing: '0.02em'
-                    }}>
-                  PULL FOR<br/>TRUTH
-                </h1>
-                <p className="text-neutral-400 text-sm md:text-base max-w-md mx-auto leading-relaxed">
-                  Honest mental health chat disguised as festive fun.<br/>
-                  Click to reveal your uncomfortable truth.
-                </p>
-              </div>
-            )}
-
-            <div className={`relative ${isPulling ? 'cracker-pulling' : ''} ${hasPopped ? 'cracker-popped' : ''}`}>
-              {!showContent && (
-                <div className="flex items-center justify-center gap-0">
-                  <div className="cracker-end left-end flex-shrink-0">
-                    <div className="w-16 md:w-20 h-24 md:h-32 relative cursor-pointer"
-                         onClick={handlePull}
-                         style={{
-                           clipPath: 'polygon(0 50%, 100% 25%, 100% 75%)',
-                           background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)'
-                         }}>
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-yellow-300 text-xl">
-                        ✨
-                      </div>
-                    </div>
-                  </div>
-
-                  <div 
-                    className="cracker-body relative cursor-pointer flex-shrink-0"
-                    onClick={handlePull}
-                    style={{ width: '200px', height: '100px' }}
-                  >
-                    <div className="absolute inset-0 bg-red-600 flex items-center justify-center">
-                      <div className="text-white text-xs font-bold tracking-widest">
-                        CLICK
-                      </div>
-                    </div>
-                    
-                    <div className="absolute top-0 left-0 right-0 h-3 bg-gradient-to-r from-yellow-500 to-yellow-400"></div>
-                    <div className="absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-r from-yellow-500 to-yellow-400"></div>
-                    
-                    <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-20">
-                      <span className="text-2xl">❄</span>
-                      <span className="text-2xl">🎄</span>
-                      <span className="text-2xl">❄</span>
-                    </div>
-                  </div>
-
-                  <div className="cracker-end right-end flex-shrink-0">
-                    <div className="w-16 md:w-20 h-24 md:h-32 relative cursor-pointer"
-                         onClick={handlePull}
-                         style={{
-                           clipPath: 'polygon(100% 50%, 0 25%, 0 75%)',
-                           background: 'linear-gradient(135deg, #b91c1c 0%, #dc2626 100%)'
-                         }}>
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-yellow-300 text-xl">
-                        ✨
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {showContent && (
-                <div className="space-y-6 md:space-y-8">
-                  <div className="fade-in text-center">
-                    <div 
-                      className="text-white text-6xl md:text-8xl font-bold mb-2 cursor-pointer hover:opacity-80 transition-opacity"
-                      style={{ fontFamily: 'Bebas Neue, sans-serif' }}
-                      onClick={reset}
-                      title="Back to home"
-                    >
-                      *POP* 🎄
-                    </div>
-                    <div className="text-neutral-500 text-xs tracking-widest">
-                      YOUR REALITY CHECK
-                    </div>
-                  </div>
-
-                  <div className="fade-in border-2 p-8 md:p-12"
-                       style={{ 
-                         animationDelay: '0.1s',
-                         borderColor: '#dc2626'
-                       }}>
-                    <div className="text-neutral-400 text-xs tracking-widest mb-4">
-                      {selectedTip.subtitle}
-                    </div>
-                    <h2 className="text-white text-3xl md:text-5xl font-bold mb-6 leading-tight"
-                        style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
-                      {selectedTip.title}
-                    </h2>
-                    <p className="text-neutral-300 text-base md:text-lg leading-relaxed mb-6">
-                      {selectedTip.content}
-                    </p>
-                    <div className="text-white text-sm font-medium tracking-wide">
-                      — {selectedTip.cta}
-                    </div>
-                  </div>
-
-                  <div className="fade-in bg-white p-8 md:p-10"
-                       style={{ animationDelay: '0.2s' }}>
-                    <div className="text-neutral-600 text-xs tracking-widest mb-3">
-                      SLIGHTLY HELPFUL REMINDER 🎁
-                    </div>
-                    <p className="text-black text-xl md:text-2xl font-medium leading-tight">
-                      "{selectedAffirmation}"
-                    </p>
-                  </div>
-
-                  <div className="fade-in border-2 p-8 md:p-10"
-                       style={{ 
-                         animationDelay: '0.3s',
-                         borderColor: '#404040'
-                       }}>
-                    <div className="flex items-start gap-4">
-                      <div className="text-4xl flex-shrink-0">🎁</div>
-                      <div className="flex-1">
-                        <div className="text-neutral-500 text-xs tracking-widest mb-2">
-                          TAKE THIS, YOU NEED IT
-                        </div>
-                        <p className="text-neutral-200 text-base md:text-lg leading-relaxed">
-                          {selectedGift}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="fade-in flex flex-col sm:flex-row gap-4 pt-4"
-                       style={{ animationDelay: '0.4s' }}>
-                    <button
-                      onClick={handleShare}
-                      className="flex-1 bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-4 text-sm font-bold tracking-widest hover:from-red-700 hover:to-red-800 transition-all flex items-center justify-center gap-2"
-                    >
-                      <span>📱</span>
-                      SHARE THIS
-                    </button>
-                    <button
-                      onClick={reset}
-                      className="flex-1 bg-white text-black px-8 py-4 text-sm font-bold tracking-widest hover:bg-neutral-200 transition-colors"
-                    >
-                      PULL ANOTHER
-                    </button>
-                  </div>
-
-                  <div className="fade-in text-center pt-8"
-                       style={{ animationDelay: '0.5s' }}>
-                    <p className="text-neutral-600 text-xs leading-relaxed max-w-md mx-auto">
-                      If you're properly struggling (not just the usual existential dread), talk to someone. 
-                      In the UK, Samaritans are on 116 123. They're actually helpful, surprisingly.
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {!hasPopped && (
-              <div className="text-center mt-16">
-                <div className="text-neutral-600 text-xs tracking-widest">
-                  DESIGNED FOR EMOTIONAL HONESTY 🎄
-                </div>
-              </div>
-            )}
+        <div class="fade-in gift-card" style="animation-delay: 0.3s">
+          <div class="gift-icon">🎁</div>
+          <div>
+            <div class="gift-label">TAKE THIS, YOU NEED IT</div>
+            <p class="gift-text" id="gift"></p>
           </div>
         </div>
-      );
+
+        <div class="fade-in buttons" style="animation-delay: 0.4s">
+          <button class="btn-share" onclick="share()">📱 SHARE THIS</button>
+          <button class="btn-reset" onclick="reset()">PULL ANOTHER</button>
+        </div>
+
+        <div class="fade-in footer-note" style="animation-delay: 0.5s">
+          If you're properly struggling (not just the usual existential dread), talk to someone. 
+          In the UK, Samaritans are on 116 123. They're actually helpful, surprisingly.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tips = [
+      { title: "FEELING LIKE SHIT IS DATA", subtitle: "Uncomfortable Truth No. 1", content: "Your brain isn't broken for feeling rubbish. It's actually doing its job by telling you something needs attention. Whether you listen is another matter entirely.", cta: "Misery loves company (therapy)" },
+      { title: "THE STRATEGIC CRY", subtitle: "Uncomfortable Truth No. 2", content: "Sometimes you just need a proper cry in the shower. It's not giving up—it's maintenance. Like defragging your emotional hard drive, but wetter.", cta: "Hydration comes in many forms" },
+      { title: "EVERYONE'S FAKING IT", subtitle: "Uncomfortable Truth No. 3", content: "That person who looks like they've got it together? They don't. They're just better at hiding the chaos. We're all just winging it whilst pretending we have a plan.", cta: "Imposter syndrome is a club, not a flaw" },
+      { title: "SELF-CARE IS CRINGE BUT NECESSARY", subtitle: "Uncomfortable Truth No. 4", content: "Yes, bubble baths and face masks feel silly. But so does having a breakdown in Sainsbury's. Pick your embarrassment wisely.", cta: "Choose your battles (and baths)" },
+      { title: "YOU CAN'T OPTIMISE YOUR WAY OUT", subtitle: "Uncomfortable Truth No. 5", content: "No amount of morning routines, bullet journals, or productivity hacks will fix everything. Sometimes life's just a bit shit and you have to sit with that.", cta: "Accept the chaos, embrace the mess" }
+    ];
+
+    const affirmations = [
+      "You're doing alright for someone who's winging it",
+      "Being a functional disaster is still functional",
+      "Your anxiety is lying to you (probably)",
+      "Everyone's a mess, some are just quieter about it",
+      "You've survived 100% of your bad days so far. Solid track record."
+    ];
+
+    const gifts = [
+      "Permission to cancel plans without guilt",
+      "The knowledge that everyone else is also pretending",
+      "Acceptance that you can't fix yourself in one weekend",
+      "Understanding that rest isn't lazy, it's strategic",
+      "Acknowledgment that sometimes a cup of tea IS the answer"
+    ];
+
+    let currentTip = null;
+
+    function random(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
     }
 
-    ReactDOM.render(<ChristmasCracker />, document.getElementById('root'));
+    function pull() {
+      const wrapper = document.getElementById('crackerWrapper');
+      wrapper.classList.add('pulling');
+      
+      setTimeout(() => {
+        wrapper.classList.add('popped');
+        setTimeout(() => {
+          showResults();
+        }, 400);
+      }, 700);
+    }
+
+    function showResults() {
+      currentTip = random(tips);
+      document.getElementById('tipSub').textContent = currentTip.subtitle;
+      document.getElementById('tipTitle').textContent = currentTip.title;
+      document.getElementById('tipContent').textContent = currentTip.content;
+      document.getElementById('tipCta').textContent = '— ' + currentTip.cta;
+      document.getElementById('affirmation').textContent = '"' + random(affirmations) + '"';
+      document.getElementById('gift').textContent = random(gifts);
+
+      document.getElementById('homeScreen').classList.add('hidden');
+      document.getElementById('marquee').classList.add('hidden');
+      document.getElementById('resultScreen').classList.remove('hidden');
+    }
+
+    function reset() {
+      document.getElementById('homeScreen').classList.remove('hidden');
+      document.getElementById('marquee').classList.remove('hidden');
+      document.getElementById('resultScreen').classList.add('hidden');
+      
+      const wrapper = document.getElementById('crackerWrapper');
+      wrapper.classList.remove('pulling', 'popped');
+    }
+
+    function share() {
+      alert('Share feature coming soon! For now, screenshot this page to share on Instagram 📱');
+    }
+
+    // Snow
+    const snow = document.getElementById('snow');
+    for(let i = 0; i < 25; i++) {
+      const flake = document.createElement('div');
+      flake.className = 'snowflake';
+      flake.textContent = '❄';
+      flake.style.left = Math.random() * 100 + '%';
+      flake.style.fontSize = (Math.random() * 12 + 8) + 'px';
+      flake.style.animationDuration = (Math.random() * 10 + 15) + 's';
+      flake.style.animationDelay = (Math.random() * 5) + 's';
+      snow.appendChild(flake);
+    }
   </script>
 </body>
 </html>
