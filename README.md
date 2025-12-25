@@ -1,6 +1,6 @@
 # Christmas Cracker - Festive Reality Check 🎄
 
-A digital Christmas cracker with British humor and mental health truths. Pull for your uncomfortable truth!
+A digital Christmas cracker with some humour and mental health truths. Pull for your uncomfortable truth!
 
 ## 🚀 Quick Start - Host on GitHub Pages
 
@@ -47,7 +47,7 @@ git push origin main
 
 ## 📱 Features
 
-- **25 Uncomfortable Truths** - British dark humor meets mental health
+- **25 Uncomfortable Truths** - Humour meets mental health
 - **Share to Instagram** - Creates shareable story cards (1080x1920)
 - **Christmas theming** - Falling snow, festive colors, proper vibes
 - **Mobile-first** - Works perfectly on phones and desktop
@@ -72,7 +72,7 @@ Free to use! Spread the emotional honesty.
 
 ## 🫖 Credits
 
-Made with British cynicism and genuine care for mental health.
+Made with Celeste, claude cynicism and genuine care for mental health.
 
 ---
 
